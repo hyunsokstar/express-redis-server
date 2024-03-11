@@ -27,8 +27,8 @@ jobs:
 
       - name: Copy EC2 private key
         run: |
-          echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ec2_private_key.pem
-          chmod 600 ec2_private_key.pem
+          echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > express-redis-server.pem
+          chmod 600 express-redis-server.pem
 
       - name: install and run redis-server
         run: |
