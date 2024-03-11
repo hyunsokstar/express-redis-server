@@ -11,7 +11,7 @@ const { PORT, REDIS_URL } = process.env
 const startServer = async () => {
 
     console.log("Starting the server port 9090 ");
-    console.log("auto deploy test 1");
+    console.log("ec2 is best !");
 
 
     const client = redis.createClient({ url: REDIS_URL });
