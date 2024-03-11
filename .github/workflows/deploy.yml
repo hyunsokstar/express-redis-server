@@ -25,6 +25,11 @@ jobs:
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
+      - name: Copy EC2 private key
+        run: |
+          echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ec2_private_key.pem
+          chmod 600 ec2_private_key.pem
+
       - name: install and run redis-server
         run: |
           sudo apt-get update
