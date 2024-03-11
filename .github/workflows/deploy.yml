@@ -17,6 +17,17 @@ jobs:
         with:
           node-version: "18.x"
 
+      - name: Set up known hosts
+        run: |
+          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: install and run redis-server
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y redis-server
+          redis-server --daemonize yes --requirepass test_env --port 6380
+
       - name: SSH and deploy
         run: |
           ssh -i ${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }} \
