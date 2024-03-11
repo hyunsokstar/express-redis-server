@@ -32,7 +32,7 @@ jobs:
 
       - name: SSH and deploy
         run: |
-          ssh -i ~/.ssh/express-redis-server.pem ubuntu@ec2-43-203-13-71.ap-northeast-2.compute.amazonaws.com << 'EOF'
+          ssh -i "~/.ssh/express-redis-server.pem" ubuntu@ec2-43-203-13-71.ap-northeast-2.compute.amazonaws.com << 'EOF'
           # Your commands to run on the remote server go here
           # For example:
           sudo apt-get update
