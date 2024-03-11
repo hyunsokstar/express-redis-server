@@ -17,6 +17,9 @@ jobs:
         with:
           node-version: "18.x"
 
+      - name: Create SSH directory
+        run: mkdir -p ~/.ssh
+
       - name: Set up known hosts
         run: |
           echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
