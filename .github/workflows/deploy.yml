@@ -30,11 +30,11 @@ jobs:
           echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > express-redis-server.pem
           chmod 600 express-redis-server.pem
 
-      - name: install and run redis-server
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y redis-server
-          redis-server --daemonize yes --requirepass test_env --port 6380
+      # - name: install and run redis-server
+      #   run: |
+      #     sudo apt-get update
+      #     sudo apt-get install -y redis-server
+      #     redis-server --daemonize yes --requirepass test_env --port 6380
 
       - name: SSH and deploy
         run: |
