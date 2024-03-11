@@ -27,13 +27,14 @@ jobs:
 
       - name: Copy EC2 private key
         run: |
-          echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem && chmod 600 ~/.ssh/express-redis-server.pem
+          echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem
+          chmod 600 ~/.ssh/express-redis-server.pem
 
       - name: SSH and deploy
         run: |
           ssh -i ~/.ssh/express-redis-server.pem ubuntu@ec2-43-203-13-71.ap-northeast-2.compute.amazonaws.com << 'EOF'
-            # Your commands to run on the remote server go here
-            # For example:
-            sudo apt-get update
-            sudo apt-get upgrade -y
+          # Your commands to run on the remote server go here
+          # For example:
+          sudo apt-get update
+          sudo apt-get upgrade -y
           EOF
