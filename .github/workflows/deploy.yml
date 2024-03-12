@@ -43,4 +43,6 @@ jobs:
             sudo npm install || exit 1
             sudo npm run build || exit 1
             sudo pm2 delete all || exit 1
-            sudo pm2 start npm -- start || exit 1
+            pm2_output=$(sudo pm2 start npm --name "express-redis-server" 2>&1) || { echo "Error: $pm2_output"; exit 1; }
+
+            # sudo pm2 start npm --name "express-redis-server" || exit 1
