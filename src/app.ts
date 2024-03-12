@@ -29,7 +29,7 @@ export const createApp = (client: RedisClient) => {
 
 
     app.get("/", (request, response) => {
-        response.status(200).send("auto deploy with express !!! update pem !");
+        response.status(200).send("auto deploy with express !!! update deploy.yml 1");
     });
 
     return app;

@@ -20,21 +20,19 @@ jobs:
       - name: Create SSH directory
         run: mkdir -p ~/.ssh
 
-      - name: Set up known hosts
-        run: |
-          echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-          chmod 644 ~/.ssh/known_hosts
-
       - name: Copy EC2 private key
         run: |
           echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem
           chmod 600 ~/.ssh/express-redis-server.pem
 
-      - name: SSH and deploy
-        run: |
-          ssh -i /home/runner/.ssh/express-redis-server.pem -t ubuntu@ec2-43-203-13-71.ap-northeast-2.compute.amazonaws.com << 'EOF'
-          # Your commands to run on the remote server go here
-          # For example:
-          sudo apt-get update
-          sudo apt-get upgrade -y
-          EOF
+      - name: SSH Commands
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.AWS_SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USERNAME }}
+          key: ${{ secrets.AWS_SSH_KEY }}
+          port: ${{ secrets.AWS_SSH_PORT }}
+          script_stop: true
+          script: |
+            cd my-project
+            sudo apt-get update
