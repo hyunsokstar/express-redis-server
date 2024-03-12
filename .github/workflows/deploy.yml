@@ -44,3 +44,4 @@ jobs:
             sudo npm run build || exit 1
             # 먼저 PM2로 프로세스를 시작합니다.
             sudo pm2 start npm --name "express-redis-server" || exit 1
+            sudo pm2 restart 0
