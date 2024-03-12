@@ -32,8 +32,9 @@ jobs:
           port: ${{ secrets.AWS_SSH_PORT }}
           script_stop: true
           script: |
-            cd express-redis-server/
             # sudo apt-get update || exit 1
+            cd express-redis-server/
+            sudo pm2 delete all || true
             sudo git pull || exit 1
             sudo npm install || exit 1
             sudo npm run build || exit 1
