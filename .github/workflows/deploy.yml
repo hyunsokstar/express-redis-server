@@ -20,10 +20,10 @@ jobs:
       - name: Create SSH directory
         run: mkdir -p ~/.ssh
 
-      - name: Copy EC2 private key
-        run: |
-          echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem
-          chmod 600 ~/.ssh/express-redis-server.pem
+      # - name: Copy EC2 private key
+      #   run: |
+      #     echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem
+      #     chmod 600 ~/.ssh/express-redis-server.pem
 
       - name: Install pm2
         run: sudo npm install -g pm2
@@ -43,8 +43,11 @@ jobs:
             sudo npm install || exit 1
             sudo npm run build || exit 1
 
+            # 현재 실행중인 pm2 를 모두종료 
+            pm2 delete all
+
             # PM2 목록을 가져와 로그로 출력
-            sudo pm2 list
+            pm2 list
 
             # PM2로 프로세스를 재시작 !
-            sudo pm2 restart 0
+            pm2 start npm -- start
