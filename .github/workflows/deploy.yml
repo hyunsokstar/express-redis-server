@@ -28,9 +28,6 @@ jobs:
       - name: Install pm2
         run: sudo npm install -g pm2
 
-      - name: Kill existing npm start process
-        run: kill -9 $(ps aux | grep "npm start" | grep -v grep | awk '{print $2}') || true
-
       - name: SSH Commands
         uses: appleboy/ssh-action@v0.1.6
         with:
@@ -45,6 +42,3 @@ jobs:
             sudo git pull || exit 1
             sudo npm install || exit 1
             sudo npm run build || exit 1
-
-            # npm start 실행 (nohup으로 백그라운드 실행)
-            nohup npm start > /dev/null 2>&1 &
