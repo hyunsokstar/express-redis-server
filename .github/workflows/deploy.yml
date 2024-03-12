@@ -25,6 +25,9 @@ jobs:
           echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem
           chmod 600 ~/.ssh/express-redis-server.pem
 
+      - name: Install pm2
+        run: sudo npm install -g pm2
+
       - name: SSH Commands
         uses: appleboy/ssh-action@v0.1.6
         with:
