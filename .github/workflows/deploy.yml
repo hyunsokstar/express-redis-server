@@ -20,16 +20,8 @@ jobs:
       - name: Create SSH directory
         run: mkdir -p ~/.ssh
 
-      # - name: Copy EC2 private key
-      #   run: |
-      #     echo "${{ secrets.EC2_EXPRESS_REDIS_SERVER_PEM }}" > ~/.ssh/express-redis-server.pem
-      #     chmod 600 ~/.ssh/express-redis-server.pem
-
       - name: Install pm2
         run: sudo npm install -g pm2
-
-      # - name: Kill existing npm start process
-      #   run: kill -9 $(ps aux | grep "npm start" | grep -v grep | awk '{print $2}') || true
 
       - name: SSH Commands
         uses: appleboy/ssh-action@v0.1.6
@@ -45,3 +37,4 @@ jobs:
             sudo git pull || exit 1
             sudo npm install || exit 1
             sudo npm run build || exit 1
+            sudo pm2 start npm -- start
