@@ -27,9 +27,8 @@ export const createApp = (client: RedisClient) => {
         response.status(200).send(messages);
     });
 
-
     app.get("/", (request, response) => {
-        response.status(200).send("auto deploy ! go to ec2 22! ");
+        response.status(200).send("auto deploy ! go to ec2 24! ");
     });
 
     return app;
