@@ -42,7 +42,5 @@ jobs:
             sudo git pull || exit 1
             sudo npm install || exit 1
             sudo npm run build || exit 1
-            sudo pm2 delete all || exit 1
-            pm2_output=$(sudo pm2 start npm --name "express-redis-server" 2>&1) || { echo "Error: $pm2_output"; exit 1; }
-
-            # sudo pm2 start npm --name "express-redis-server" || exit 1
+            # 먼저 PM2로 프로세스를 시작합니다.
+            sudo pm2 start npm --name "express-redis-server" || exit 1
