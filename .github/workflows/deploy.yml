@@ -39,5 +39,4 @@ jobs:
             sudo git pull || exit 1
             sudo npm install || exit 1
             sudo npm run build || exit 1
-            sudo pm2 delete all || exit 1
-            sudo pm2 start npm -- start || exit 1
+            sudo pm2 restart 0 || exit 1
